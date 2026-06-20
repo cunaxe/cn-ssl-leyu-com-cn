@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>说球帝 · 稳定内容入口页</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f2f7fc;
+      color: #1f2937;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* 主容器 */
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.5rem 1.2rem 2.5rem;
+    }
+
+    /* 卡片网格通用 */
+    .grid-card {
+      background: #ffffff;
+      border-radius: 22px;
+      box-shadow: 0 8px 20px -8px rgba(0, 40, 60, 0.08);
+      padding: 1.6rem 1.5rem;
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+    .grid-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px -12px rgba(0, 70, 90, 0.15);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 2.2rem 0.6rem 1.8rem;
+      background: linear-gradient(145deg, #dbeef6, #ecf7fe);
+      border-radius: 32px;
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #0b3847;
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 span {
+      background: linear-gradient(120deg, #167b8c, #1da1b2);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      max-width: 600px;
+      font-size: 1.1rem;
+      color: #2b5a68;
+      background: rgba(255,255,255,0.7);
+      padding: 0.5rem 1.2rem;
+      border-radius: 60px;
+      backdrop-filter: blur(2px);
+      box-shadow: 0 1px 6px rgba(0,40,50,0.04);
+    }
+    .hero .badge {
+      display: inline-block;
+      background: #147b8b;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+      margin-top: 0.9rem;
+    }
+
+    /* 优势区 / 网格卡片 */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin: 2rem 0 1.6rem;
+    }
+    .features-grid .grid-card {
+      border-left: 5px solid #1b9aaa;
+    }
+    .features-grid h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #0b4b57;
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .features-grid h3::before {
+      content: "◈";
+      color: #1b9aaa;
+      font-weight: 400;
+      font-size: 1.3rem;
+      margin-right: 0.2rem;
+    }
+    .features-grid p {
+      font-size: 0.95rem;
+      color: #2f4e5a;
+    }
+
+    /* 说明区 / 混合排版 */
+    .explain-block {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 1.8rem 1.5rem;
+      margin: 1.4rem 0 1.8rem;
+      box-shadow: 0 4px 14px rgba(0,60,80,0.04);
+    }
+    .explain-block h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #024c5c;
+      border-bottom: 3px solid #b3dfea;
+      padding-bottom: 0.4rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+    .explain-block p {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .explain-block .highlight {
+      background: #e0f2f6;
+      border-radius: 30px;
+      padding: 0.2rem 0.9rem;
+      color: #025b6d;
+      font-weight: 500;
+    }
+    .link-sentence {
+      background: #f1faff;
+      padding: 0.9rem 1.2rem;
+      border-radius: 60px;
+      font-size: 0.98rem;
+      border: 1px solid #cae3ec;
+      margin: 1rem 0 0.2rem;
+    }
+
+    /* FAQ 摘要 – 精简条目 */
+    .faq-digest {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin: 1.6rem 0 1.2rem;
+    }
+    .faq-item {
+      background: white;
+      border-radius: 60px;
+      padding: 0.75rem 1.4rem;
+      box-shadow: 0 2px 6px rgba(0,40,50,0.03);
+      border: 1px solid #d3e7ef;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem 0.8rem;
+      flex-wrap: wrap;
+    }
+    .faq-q {
+      font-weight: 600;
+      color: #0a4d5c;
+      min-width: 80px;
+    }
+    .faq-q::before {
+      content: "❓";
+      margin-right: 6px;
+      font-size: 0.9rem;
+    }
+    .faq-a {
+      color: #2b5c68;
+      font-size: 0.95rem;
+    }
+
+    /* 底部链接 */
+    .footer-links {
+      margin-top: 2.6rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #c2dbe6;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.9rem;
+    }
+    .footer-links a {
+      color: #116d7e;
+      text-decoration: none;
+      border-bottom: 1px dashed #94c5d3;
+    }
+    .footer-links a:hover {
+      color: #023b47;
+      border-bottom-style: solid;
+    }
+    .footer-meta {
+      color: #4e6f7a;
+    }
+
+    /* 响应式细节 */
+    @media (max-width: 640px) {
+      .page { padding: 1rem 0.9rem; }
+      .hero h1 { font-size: 1.8rem; }
+      .hero p { font-size: 0.98rem; padding: 0.4rem 1rem; }
+      .features-grid { grid-template-columns: 1fr; gap: 0.9rem; }
+      .features-grid .grid-card { padding: 1.2rem 1rem; }
+      .explain-block { padding: 1.4rem 1rem; }
+      .faq-item { border-radius: 28px; padding: 0.7rem 1rem; flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (min-width: 768px) {
+      .faq-digest { flex-direction: row; flex-wrap: wrap; }
+      .faq-item { flex: 1 1 45%; min-width: 200px; }
+    }
+
+    /* 小点缀 */
+    .accent-dot {
+      color: #1b9aaa;
+      font-weight: 300;
+    }
+    .muted-text {
+      color: #446a76;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO 区 -->
+  <div class="hero">
+    <h1>· <span>说球帝</span> ·</h1>
+    <p>移动端内容入口 · 持续可用 · 稳定呈现</p>
+    <div class="badge">日常信息通道</div>
+  </div>
+
+  <!-- 优势区：双卡片网格 -->
+  <div class="features-grid">
+    <div class="grid-card">
+      <h3>直达内容</h3>
+      <p>通过统一页面跳转，减少中间步骤，直接获取所需信息流。</p>
+    </div>
+    <div class="grid-card">
+      <h3>轻量入口</h3>
+      <p>无需安装额外工具，浏览器即可访问，保持低门槛使用体验。</p>
+    </div>
+    <div class="grid-card">
+      <h3>连接稳定</h3>
+      <p>页面结构长期维护，减少访问中断情况，适合日常浏览。</p>
+    </div>
+    <div class="grid-card">
+      <h3>通用适配</h3>
+      <p>移动端优先设计，兼顾不同屏幕尺寸，阅读不费力。</p>
+    </div>
+  </div>
+
+  <!-- 说明区 + 嵌入链接 -->
+  <div class="explain-block">
+    <h2>关于这个页面</h2>
+    <p>这里是一个辅助索引页，为经常使用 <a href="https://wap-shuoqiudi.com" style="color:#116d7e; font-weight:500; text-decoration:underline;">说球帝</a> 的朋友提供便利。页面本身不存储核心数据，只作为访问路径中的参考节点。</p>
+    <p>我们推荐将 <span class="highlight">wap-shuoqiudi.com</span> 加入浏览器书签，方便随时打开。下面的 FAQ 摘要覆盖了一些常见疑问。</p>
+    <div class="link-sentence">
+      📌 日常访问：在浏览器地址栏直接输入 <a href="https://wap-shuoqiudi.com" style="font-weight:600; color:#074f5e; text-decoration:underline;">说球帝</a> 即可到达主页面，无需额外搜索。
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 三个条目 -->
+  <div class="faq-digest">
+    <div class="faq-item">
+      <span class="faq-q">页面打不开？</span>
+      <span class="faq-a">检查网络环境，或稍后刷新。大部分情况可正常加载。</span>
+    </div>
+    <div class="faq-item">
+      <span class="faq-q">内容更新频率</span>
+      <span class="faq-a">资源方自行维护，建议定期访问获取最新信息。</span>
+    </div>
+    <div class="faq-item">
+      <span class="faq-q">是否收费</span>
+      <span class="faq-a">基础访问免费，无隐藏订阅，请放心使用。</span>
+    </div>
+  </div>
+
+  <!-- 底部链接及说明 -->
+  <div class="footer-links">
+    <div>
+      <a href="https://wap-shuoqiudi.com">说球帝</a>
+      <span class="accent-dot"> · </span>
+      <span class="footer-meta">移动端页面</span>
+    </div>
+    <div class="muted-text">
+      © 介绍页 · 仅作索引
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
