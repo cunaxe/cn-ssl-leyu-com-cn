@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>c7娱乐 · 主题灵感 · 信息卡片</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background: #f0f6fc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.2rem 1rem 3rem;
+            color: #1b2b3a;
+        }
+
+        .page {
+            max-width: 1120px;
+            width: 100%;
+        }
+
+        /* 主视觉 - 温和渐变 + 网格衬底 */
+        .hero {
+            background: linear-gradient(145deg, #e2f0f5 0%, #c9e0eb 100%);
+            border-radius: 2rem;
+            padding: 2.5rem 2rem 2.8rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 8px 18px rgba(20, 70, 90, 0.08);
+            background-image: radial-gradient(circle at 20% 30%, rgba(60, 140, 170, 0.06) 0%, transparent 60%),
+                              repeating-linear-gradient(45deg, rgba(80, 160, 190, 0.03) 0px, rgba(80, 160, 190, 0.03) 1px,
+                                                        transparent 1px, transparent 12px);
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: #12405a;
+            margin-bottom: 0.6rem;
+            line-height: 1.3;
+        }
+
+        .hero h1 i {
+            font-style: normal;
+            background: #0f6f8b20;
+            padding: 0 0.4rem;
+            border-radius: 6px;
+            color: #065773;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 680px;
+            color: #1a4c63;
+        }
+
+        .hero .hero-tag {
+            display: inline-block;
+            margin-top: 1.2rem;
+            background: #ffffffb0;
+            backdrop-filter: blur(2px);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            border: 1px solid #9fc7da;
+            color: #1d5f7a;
+        }
+
+        /* 网格卡片系统 */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin: 2.2rem 0 2rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            padding: 1.8rem 1.6rem 2rem;
+            box-shadow: 0 6px 16px rgba(30, 80, 110, 0.06);
+            border: 1px solid #d7e5ef;
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+
+        .card:hover {
+            box-shadow: 0 12px 26px rgba(20, 85, 120, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .card .icon-placeholder {
+            display: inline-block;
+            background: #d9edf5;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            line-height: 48px;
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #0f6f8b;
+        }
+
+        .card h3 {
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: #144e67;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p, .card li {
+            font-size: 0.98rem;
+            line-height: 1.6;
+            color: #2d4d5f;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card ul li::before {
+            content: "•";
+            color: #2b98b0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1.2rem;
+        }
+
+        .card ul li {
+            margin-bottom: 0.3rem;
+        }
+
+        .card-highlight {
+            border-left: 4px solid #2b98b0;
+            background: #f6fcff;
+        }
+
+        /* 自然链接段落卡片 */
+        .link-card {
+            background: #e6f3fa;
+            border-radius: 1.8rem;
+            padding: 2rem 2rem 2rem 2.2rem;
+            margin: 2.2rem 0 1.8rem;
+            border: 1px solid #bdd5e3;
+            box-shadow: 0 4px 12px rgba(40, 110, 140, 0.04);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.6rem 0.3rem;
+        }
+
+        .link-card p {
+            font-size: 1.08rem;
+            line-height: 1.7;
+            color: #1b465b;
+            margin: 0;
+        }
+
+        .link-card a {
+            color: #116280;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px dashed #3c93b0;
+            transition: border 0.2s, color 0.15s;
+            padding: 0 0.1rem;
+        }
+
+        .link-card a:hover {
+            color: #043d52;
+            border-bottom: 2px solid #1a7a99;
+        }
+
+        /* 适合人群 —— 用卡片微调 */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.2rem;
+            margin: 1.5rem 0 0.8rem;
+        }
+
+        .audience-item {
+            background: #f2faff;
+            padding: 1rem 0.8rem;
+            border-radius: 1.2rem;
+            text-align: center;
+            border: 1px solid #c7deec;
+            font-size: 0.95rem;
+            color: #154c61;
+            transition: background 0.2s;
+        }
+
+        .audience-item:hover {
+            background: #dceef8;
+        }
+
+        .audience-item span {
+            background: #b3d8ea;
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin-right: 0.3rem;
+            color: #043b4f;
+        }
+
+        /* FAQ 摘要风格 */
+        .faq-mini {
+            background: #f8fdff;
+            border-radius: 1.5rem;
+            padding: 1.6rem 1.8rem;
+            margin: 2.4rem 0 1.2rem;
+            border: 1px solid #cde0ec;
+        }
+
+        .faq-mini h4 {
+            font-weight: 500;
+            color: #065773;
+            font-size: 1.2rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .faq-mini details {
+            margin: 0.6rem 0;
+            border-bottom: 1px solid #d6e5f0;
+            padding-bottom: 0.5rem;
+        }
+
+        .faq-mini details[open] {
+            border-bottom-color: #9bc2d6;
+        }
+
+        .faq-mini summary {
+            font-weight: 470;
+            cursor: pointer;
+            color: #1f5f79;
+            padding: 0.3rem 0;
+            font-size: 0.98rem;
+        }
+
+        .faq-mini summary::marker {
+            color: #2b98b0;
+        }
+
+        .faq-mini p {
+            margin-top: 0.3rem;
+            padding-left: 0.8rem;
+            color: #2b5b72;
+            line-height: 1.6;
+            font-size: 0.92rem;
+        }
+
+        /* 提示块 */
+        .note-strip {
+            background: #d4e6f2;
+            border-radius: 40px;
+            padding: 0.7rem 1.5rem;
+            display: inline-block;
+            margin-top: 1.2rem;
+            font-size: 0.9rem;
+            color: #105774;
+            border: 1px solid #aecbd9;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #b7d2e3, transparent);
+            margin: 1.8rem 0;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin: 2rem 0 0.5rem;
+            font-size: 0.85rem;
+            color: #3f7087;
+        }
+
+        /* 响应式 */
+        @media (max-width: 500px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .hero {
+                padding: 2rem 1.2rem;
+            }
+            .card {
+                padding: 1.4rem 1.2rem;
+            }
+            .link-card {
+                padding: 1.6rem 1.2rem;
+            }
+            .faq-mini {
+                padding: 1.2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- hero 主视觉：主题背景 -->
+    <div class="hero">
+        <h1>· <i>c7娱乐</i> 背后的主题灵感</h1>
+        <p>数字休闲、轻互动与内容社群 —— 从场景中寻找自然放松的节奏。<br>不只是名称，更是一种围绕兴趣展开的生活方式。</p>
+        <div class="hero-tag"># 故事感 · 轻娱乐 · 多元场景</div>
+    </div>
+
+    <!-- 用途卡片 —— 网格展示 -->
+    <div class="grid-2col">
+        <div class="card">
+            <div class="icon-placeholder">🎯</div>
+            <h3>内容发现</h3>
+            <p>聚合主题讨论、趣味挑战与创意分享。适合在碎片时间里阅读、浏览、参与低门槛互动，无需复杂操作。</p>
+        </div>
+        <div class="card card-highlight">
+            <div class="icon-placeholder">🔄</div>
+            <h3>社群氛围</h3>
+            <p>以兴趣小组、轻量话题为纽带。你可以自由选择加入或旁观，氛围偏向温和交流，避免过度竞争。</p>
+        </div>
+        <div class="card">
+            <div class="icon-placeholder">🧩</div>
+            <h3>轻松参与</h3>
+            <p>无论是答题、投票、小游戏或是日常打卡，都设计为低门槛、即时反馈。适合放松时刻，不需要长时间投入。</p>
+        </div>
+        <div class="card">
+            <div class="icon-placeholder">🌿</div>
+            <h3>日常灵感</h3>
+            <p>从生活好物、冷知识到创意点子，内容节奏舒缓。你可以像翻阅杂志一样获取灵感，也可以随手分享。</p>
+        </div>
+    </div>
+
+    <!-- 适合人群卡片式 -->
+    <h2 style="font-weight: 450; color: #12435c; margin: 1.2rem 0 0.2rem;">常被吸引的人群</h2>
+    <div class="audience-grid">
+        <div class="audience-item"><span>🧑‍💻</span> 远程工作者 · 放松间隙</div>
+        <div class="audience-item"><span>🎓</span> 大学生 · 课余探索</div>
+        <div class="audience-item"><span>🧘</span> 轻度游戏爱好者</div>
+        <div class="audience-item"><span>📱</span> 社交潜水型用户</div>
+        <div class="audience-item"><span>🕊️</span> 内容收集控</div>
+    </div>
+
+    <!-- 自然链接段落（嵌入 a 标签） -->
+    <div class="link-card">
+        <p>
+            如果你对这类温和、轻量的互动场景感兴趣，不妨去了解 <a href="https://m-home-c7entertainment.com">c7娱乐</a> 所构建的主题内容。
+            这里没有复杂的规则，更多是围绕日常趣味与社群分享展开。页面设计也从自然色系与低信息密度出发，让浏览本身成为一种休息。
+        </p>
+        <p style="margin-top:0.4rem;">
+            每个人都可以在这里找到属于自己的节奏——或安静浏览，或与同好轻声交流。
+        </p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+        <h4>常见疑问 · 轻摘要</h4>
+        <details>
+            <summary>这里的内容更新频率如何？</summary>
+            <p>以周为节奏更新，内容偏向主题式策划，避免信息轰炸。每次更新会围绕特定兴趣点展开，方便你随时回看。</p>
+        </details>
+        <details>
+            <summary>是否需要注册或下载？</summary>
+            <p>大部分浏览与轻度互动可以直接在页面完成，无需强制注册。如果需要参与社群讨论，可能会有简单的身份验证，但流程很轻。</p>
+        </details>
+        <details>
+            <summary>适合安静内向的人吗？</summary>
+            <p>非常适合。许多模块支持只读模式，你可以只浏览、不发言。互动设计也倾向于低压力选项，例如表情反馈、选择题等。</p>
+        </details>
+    </div>
+
+    <!-- 提示小卡片 -->
+    <div class="note-strip">
+        ⚬ 不制造焦虑 · 不诱导沉迷 · 回归内容本身
+    </div>
+
+    <hr>
+
+    <div class="footer-note">
+        以温和视角探索数字娱乐 · 主题场景持续生长中
+    </div>
+</div>
+</body>
+</html>
