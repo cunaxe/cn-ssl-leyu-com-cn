@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>雨燕直播 · 稳定观赛入口与使用说明</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #fafbfc;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #222;
+      line-height: 1.7;
+      letter-spacing: 0.02em;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* 顶部导航 */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0 12px;
+      border-bottom: 1px solid #e9ecf0;
+      flex-wrap: wrap;
+    }
+
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #0d1b2a;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-logo span {
+      color: #3a6ea5;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #3b4a5c;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #1a3f5c;
+    }
+
+    /* 主区域 */
+    .hero {
+      padding: 48px 0 32px;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+      color: #0a1922;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: #2c3e4f;
+      max-width: 580px;
+      margin-bottom: 24px;
+    }
+
+    .hero .highlight {
+      background: #eef3f8;
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    /* 介绍卡片 */
+    .intro-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px 30px;
+      margin: 16px 0 32px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+      border: 1px solid #eaedf2;
+    }
+
+    .intro-card h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #1b2d3f;
+    }
+
+    .intro-card p {
+      color: #2f4154;
+      margin-bottom: 10px;
+    }
+
+    .intro-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .link-inline {
+      color: #2b6a96;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid #b8ccdb;
+      transition: border 0.15s, color 0.15s;
+    }
+
+    .link-inline:hover {
+      border-bottom-color: #2b6a96;
+      color: #134a6f;
+    }
+
+    /* 场景模块 */
+    .scene-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin: 38px 0 30px;
+    }
+
+    .scene-item {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 24px 28px;
+      border: 1px solid #e6eaef;
+      transition: box-shadow 0.2s;
+    }
+
+    .scene-item:hover {
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    }
+
+    .scene-item h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #142835;
+    }
+
+    .scene-item p {
+      color: #3a4d5e;
+      font-size: 0.96rem;
+    }
+
+    .scene-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      background: #e4ebf2;
+      color: #1d3c52;
+      padding: 2px 10px;
+      border-radius: 20px;
+      margin-top: 8px;
+      font-weight: 500;
+    }
+
+    /* 常见说明 (FAQ 摘要) */
+    .faq-summary {
+      margin: 28px 0 36px;
+      border-top: 1px solid #e2e7ed;
+      padding-top: 30px;
+    }
+
+    .faq-summary h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+      color: #152b3a;
+    }
+
+    .faq-item {
+      margin-bottom: 18px;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 600;
+      color: #1b3347;
+      margin-bottom: 3px;
+    }
+
+    .faq-item p {
+      color: #3c4f61;
+      font-size: 0.95rem;
+    }
+
+    .faq-item p a {
+      color: #2b6a96;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .faq-item p a:hover {
+      text-decoration: underline;
+    }
+
+    /* 底部 */
+    .footer {
+      padding: 24px 0 40px;
+      font-size: 0.85rem;
+      color: #657b8b;
+      border-top: 1px solid #e2e7ed;
+      text-align: center;
+    }
+
+    .footer a {
+      color: #3b5d79;
+      text-decoration: none;
+    }
+
+    /* 响应式 */
+    @media (max-width: 560px) {
+      .page {
+        padding: 0 16px;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .nav-links {
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .intro-card {
+        padding: 20px 18px;
+      }
+
+      .scene-item {
+        padding: 18px 18px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .hero h1 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- 导航 -->
+    <nav class="nav">
+      <div class="nav-logo">⚡ 雨燕<span>直播</span></div>
+      <div class="nav-links">
+        <a href="#">首页</a>
+        <a href="#">场景</a>
+        <a href="#">常见问题</a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>稳定观赛，从清晰的入口开始</h1>
+      <p>很多朋友在寻找直播时，最在意的其实是入口是否稳定、流程是否简洁。我们围绕「<span class="highlight">雨燕直播</span>」整理了这份页面说明，帮助你更顺畅地了解这个服务。</p>
+    </section>
+
+    <!-- 核心介绍 -->
+    <div class="intro-card">
+      <h2>关于雨燕直播</h2>
+      <p>
+        <a href="https://zh-index-yuyan.com" class="link-inline">雨燕直播</a> 
+        是一个以体育赛事和综合直播为主的平台，界面干净，加载速度在多数网络环境下表现不错。许多用户选择它作为日常观赛的补充途径，尤其是在需要快速切换频道或寻找特定比赛时，它的结构比较直接。
+      </p>
+      <p>
+        我们建议第一次使用的人先通过上方链接打开并熟悉页面布局。从整体看，它的设计更偏向实用，没有过多繁杂的弹窗或跳转，这在一定程度上降低了使用门槛。
+      </p>
+    </div>
+
+    <!-- 三个场景模块 -->
+    <div class="scene-grid">
+      <div class="scene-item">
+        <h3>📱 移动端快速浏览</h3>
+        <p>在手机浏览器中直接打开，页面会自适应屏幕。你可以保存到主屏幕，方便下次直接启动。适合在通勤或碎片时间里快速查看比分与直播进度。</p>
+        <span class="scene-tag">轻量适配</span>
+      </div>
+      <div class="scene-item">
+        <h3>🖥️ 桌面端多窗口配合</h3>
+        <p>如果你习惯一边看比赛一边查看数据或聊球，雨燕直播在桌面端的标签式布局很适合分屏操作。同时打开多个频道时，切换的响应速度也比较流畅。</p>
+        <span class="scene-tag">分屏友好</span>
+      </div>
+      <div class="scene-item">
+        <h3>🔗 作为备用入口参考</h3>
+        <p>在主力直播源出现波动时，很多人会把 
+          <a href="https://zh-index-yuyan.com" class="link-inline">雨燕直播</a> 
+          作为一个备选方案。由于它不需要额外的客户端，直接通过网页就能使用，减少了安装和配置的步骤。
+        </p>
+        <span class="scene-tag">即开即用</span>
+      </div>
+    </div>
+
+    <!-- 常见说明 (FAQ 摘要) -->
+    <div class="faq-summary">
+      <h2>一些常见的问题与说明</h2>
+      <div class="faq-item">
+        <strong>是否需要注册或付费？</strong>
+        <p>大部分内容可以直接观看，部分高清或特定频道可能需要登录账号。具体以页面实际提示为准，建议先体验免费部分再决定。</p>
+      </div>
+      <div class="faq-item">
+        <strong>页面打不开或加载慢怎么办？</strong>
+        <p>可以尝试更换网络环境或刷新页面。如果持续无法访问，请确认链接是否正确：<a href="https://zh-index-yuyan.com">雨燕直播</a> 的域名是固定的，不要相信任何仿冒地址。</p>
+      </div>
+      <div class="faq-item">
+        <strong>移动端和电脑端体验一样吗？</strong>
+        <p>核心功能一致，但移动端的菜单会折叠为更简洁的图标形式，电脑端的频道列表展示更完整。可以根据自己的设备选择最适合的浏览方式。</p>
+      </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer class="footer">
+      <p>页面仅作介绍与导航参考 · <a href="https://zh-index-yuyan.com">雨燕直播</a> · 内容持续完善中</p>
+    </footer>
+  </div>
+</body>
+</html>
